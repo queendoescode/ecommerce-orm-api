@@ -42,12 +42,46 @@ router.post('/',  async (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a category by its `id` value
+  const categoryId = req.params.id;
+  const categoryName = req.body.category_name;
+
+  try {
+    const data = await Category.update(
+      {
+        category_name: categoryName
+      },
+      { 
+        where: {
+          id: categoryId
+        }
+      });
+    const updatedRow = await Category.findByPk(categoryId);
+    res.json(updatedRow);
+  }
+  catch (err) {
+    res.status(500).json({error: "An error occurred in updating data"});
+  }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
+  const categoryId = req.params.id;
+
+  try {
+    await Category.destroy(
+      { 
+        where: {
+          id: categoryId
+        }
+      }
+    );
+    res.json({});
+  }
+  catch (err) {
+    res.status(500).json({error: "An error occurred in deleting data"});
+  }
 });
 
 module.exports = router;
