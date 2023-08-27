@@ -110,8 +110,24 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
+
+  const productId = req.params.id;
+
+  try {
+    await Product.destroy(
+      { 
+        where: {
+          id: productId
+        }
+      }
+    );
+    res.json({});
+  }
+  catch (err) {
+    res.status(400).json({error: "An error occurred in deleting data"});
+  }
 });
 
 module.exports = router;
