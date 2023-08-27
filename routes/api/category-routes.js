@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     res.json(data);
   }
   catch (err) {
-    res.status(500).json({error: "An error occurred in fetching data"});
+    res.status(400).json({error: "An error occurred in fetching data"});
   }
 });
 
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
     res.json(data);
   }
   catch (err) {
-    res.status(500).json({error: "An error occurred in fetching data"});
+    res.status(400).json({error: "An error occurred in fetching data"});
   }
 });
 
@@ -38,7 +38,7 @@ router.post('/',  async (req, res) => {
     res.json(data);
   }
   catch (err) {
-    res.status(500).json({error: "An error occurred in creating new data"});
+    res.status(400).json({error: "An error occurred in creating new data"});
   }
 });
 
@@ -61,7 +61,7 @@ router.put('/:id', async (req, res) => {
     res.json(updatedRow);
   }
   catch (err) {
-    res.status(500).json({error: "An error occurred in updating data"});
+    res.status(400).json({error: "An error occurred in updating data"});
   }
 });
 
@@ -80,7 +80,7 @@ router.delete('/:id', async (req, res) => {
     res.json({});
   }
   catch (err) {
-    res.status(500).json({error: "An error occurred in deleting data"});
+    res.status(400).json({error: "An error occurred in deleting data"});
   }
 });
 
